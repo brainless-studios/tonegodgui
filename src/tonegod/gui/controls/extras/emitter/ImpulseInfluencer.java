@@ -30,7 +30,7 @@ public class ImpulseInfluencer extends InfluencerBase {
 			float incY = FastMath.nextRandomFloat();
 			if (FastMath.rand.nextBoolean()) incY = -incY;
 			temp.set(particle.velocity).addLocal(incX, incY);
-			particle.velocity.interpolate(temp, (variationStrength));
+			particle.velocity.interpolateLocal(temp, (variationStrength));
 		}
 	}
 

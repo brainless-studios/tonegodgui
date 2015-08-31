@@ -41,7 +41,7 @@ public abstract class Indicator extends Element {
 			screen.getStyle("Indicator").getVector2f("defaultSize"),
 			screen.getStyle("Indicator").getVector4f("resizeBorders"),
 			screen.getStyle("Indicator").getString("defaultImg"),
-			orientation
+			orientation, true
 		);
 	}
 	
@@ -56,7 +56,7 @@ public abstract class Indicator extends Element {
 			screen.getStyle("Indicator").getVector2f("defaultSize"),
 			screen.getStyle("Indicator").getVector4f("resizeBorders"),
 			screen.getStyle("Indicator").getString("defaultImg"),
-			orientation
+			orientation, true
 		);
 	}
 	
@@ -67,11 +67,11 @@ public abstract class Indicator extends Element {
 	 * @param position A Vector2f containing the x/y position of the Element
 	 * @param dimensions A Vector2f containing the width/height dimensions of the Element
 	 */
-	public Indicator(ElementManager screen, Vector2f position, Vector2f dimensions, Orientation orientation) {
+	public Indicator(ElementManager screen, Vector2f position, Vector2f dimensions, Orientation orientation, boolean useOverlay) {
 		this(screen, UIDUtil.getUID(), position, dimensions,
 			screen.getStyle("Indicator").getVector4f("resizeBorders"),
 			screen.getStyle("Indicator").getString("defaultImg"),
-			orientation
+			orientation, useOverlay
 		);
 	}
 	
@@ -85,7 +85,7 @@ public abstract class Indicator extends Element {
 	 * @param defaultImg The default image to use for the Element
 	 */
 	public Indicator(ElementManager screen, Vector2f position, Vector2f dimensions, Vector4f resizeBorders, String defaultImg, Orientation orientation) {
-		this(screen, UIDUtil.getUID(), position, dimensions, resizeBorders, defaultImg, orientation);
+		this(screen, UIDUtil.getUID(), position, dimensions, resizeBorders, defaultImg, orientation, true);
 	}
 	
 	/**
@@ -100,7 +100,7 @@ public abstract class Indicator extends Element {
 			screen.getStyle("Indicator").getVector2f("defaultSize"),
 			screen.getStyle("Indicator").getVector4f("resizeBorders"),
 			screen.getStyle("Indicator").getString("defaultImg"),
-			orientation
+			orientation, true
 		);
 	}
 	
@@ -116,7 +116,7 @@ public abstract class Indicator extends Element {
 		this(screen, UID, position, dimensions,
 			screen.getStyle("Indicator").getVector4f("resizeBorders"),
 			screen.getStyle("Indicator").getString("defaultImg"),
-			orientation
+			orientation, true
 		);
 	}
 	
@@ -130,7 +130,7 @@ public abstract class Indicator extends Element {
 	 * @param resizeBorders A Vector4f containing the border information used when resizing the default image (x = N, y = W, z = E, w = S)
 	 * @param defaultImg The default image to use for the Indicator
 	 */
-	public Indicator(ElementManager screen, String UID, Vector2f position, Vector2f dimensions, Vector4f resizeBorders, String defaultImg, Orientation orientation) {
+	public Indicator(ElementManager screen, String UID, Vector2f position, Vector2f dimensions, Vector4f resizeBorders, String defaultImg, Orientation orientation, boolean useOverlay) {
 		super(screen, UID, position, dimensions, resizeBorders, null);
 		
 		indDimensions.set(dimensions);
@@ -186,29 +186,31 @@ public abstract class Indicator extends Element {
 		elIndicator.setScaleNS(false);
 		addChild(elIndicator);
 		
-		elOverlay = new Element(
-			screen,
-			UID + ":Overlay",
-			Vector2f.ZERO,
-			dimensions,
-			resizeBorders,
-			overlayImg
-		);
-		elOverlay.setIgnoreMouse(true);
-		elOverlay.setDocking(Docking.SW);
-		elOverlay.setScaleEW(true);
-		elOverlay.setScaleNS(false);
-		
-		// Load default font info
-		elOverlay.setFontColor(screen.getStyle("Indicator").getColorRGBA("fontColor"));
-		elOverlay.setFontSize(screen.getStyle("Indicator").getFloat("fontSize"));
-		elOverlay.setTextAlign(BitmapFont.Align.valueOf(screen.getStyle("Indicator").getString("textAlign")));
-		elOverlay.setTextVAlign(BitmapFont.VAlign.valueOf(screen.getStyle("Indicator").getString("textVAlign")));
-		elOverlay.setTextWrap(LineWrapMode.valueOf(screen.getStyle("Indicator").getString("textWrap")));
-		elOverlay.setTextClipPaddingByKey("Indicator","textPadding");
-		elOverlay.setTextPaddingByKey("Indicator","textPadding");
-		
-		addChild(elOverlay);
+                    elOverlay = new Element(
+                            screen,
+                            UID + ":Overlay",
+                            Vector2f.ZERO,
+                            dimensions,
+                            resizeBorders,
+                            overlayImg
+                    );
+                    elOverlay.setIgnoreMouse(true);
+                    elOverlay.setDocking(Docking.SW);
+                    elOverlay.setScaleEW(true);
+                    elOverlay.setScaleNS(false);
+
+                    // Load default font info
+                    elOverlay.setFontColor(screen.getStyle("Indicator").getColorRGBA("fontColor"));
+                    elOverlay.setFontSize(screen.getStyle("Indicator").getFloat("fontSize"));
+                    elOverlay.setTextAlign(BitmapFont.Align.valueOf(screen.getStyle("Indicator").getString("textAlign")));
+                    elOverlay.setTextVAlign(BitmapFont.VAlign.valueOf(screen.getStyle("Indicator").getString("textVAlign")));
+                    elOverlay.setTextWrap(LineWrapMode.valueOf(screen.getStyle("Indicator").getString("textWrap")));
+                    elOverlay.setTextClipPaddingByKey("Indicator","textPadding");
+                    elOverlay.setTextPaddingByKey("Indicator","textPadding");
+
+                if(useOverlay) {
+                    addChild(elOverlay);
+                }
 		
 	}
 	

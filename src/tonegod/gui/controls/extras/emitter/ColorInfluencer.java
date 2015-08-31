@@ -25,7 +25,7 @@ public class ColorInfluencer extends InfluencerBase {
 	@Override
 	public void update(ElementParticle particle, float tpf) {
 		if (isEnabled) {
-			particle.color.interpolate(startColor, endColor, interpolation.apply(particle.blend));
+			particle.color.interpolateLocal(startColor, endColor, interpolation.apply(particle.blend));
 		}
 	}
 

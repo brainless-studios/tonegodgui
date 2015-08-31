@@ -268,7 +268,7 @@ public class Screen implements ElementManager, Control, RawInputListener {
 		defaultGUIFont = app.getAssetManager().loadFont(styleManager.getStyle("Font").getString("defaultFont"));
 		
 		scenes.add((Node)app.getViewPort().getScenes().get(0));
-		
+                
 		scaleManager = new ScaleUtil(this);
 		scaleManager.initialize();
 	}

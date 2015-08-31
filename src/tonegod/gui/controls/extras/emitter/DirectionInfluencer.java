@@ -32,7 +32,7 @@ public class DirectionInfluencer extends InfluencerBase {
 		if (isEnabled) {
 			if (direction != Vector2f.ZERO) {
 				temp.set(direction.normalize()).multLocal(particle.randforce*strength);
-				particle.velocity.interpolate(particle.velocity, temp, 0.5f);
+				particle.velocity.interpolateLocal(particle.velocity, temp, 0.5f);
 			}
 		}
 	}

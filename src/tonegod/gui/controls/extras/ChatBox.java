@@ -264,5 +264,5 @@ public abstract class ChatBox extends Panel {
 	 */
 	public void setToolTipSendButton(String tip) {
 		this.btnChatSendMsg.setToolTipText(tip);
-	}
+    }
 }

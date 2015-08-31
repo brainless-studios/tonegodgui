@@ -306,7 +306,7 @@ public class LayoutParser {
                         Boolean bool = Boolean.parseBoolean(flag);
                         return new Spinner(screen, id, position, dimensions, resizeBorders, img, orientation, bool) {
                                 @Override
-                                public void onChange(int selectedIndex, String value) {
+                                public void onChange(int selectedIndex, String value, ChangeType type) {
                                         for (int n = 0; n < childNodes.getLength(); n++) {
                                                 org.w3c.dom.Node childNode = childNodes.item(n);
                                                 if (childNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
@@ -413,7 +413,7 @@ public class LayoutParser {
                         };
                 } else if (className.equals("Indicator")) {
                         Indicator.Orientation orientation = Indicator.Orientation.valueOf(ori);
-                        return new Indicator(screen, id, position, dimensions, resizeBorders, img, orientation) {
+                        return new Indicator(screen, id, position, dimensions, resizeBorders, img, orientation, true) {
                                 @Override
                                 public void onChange(float currentValue, float currentPercentage) {
                                         for (int n = 0; n < childNodes.getLength(); n++) {

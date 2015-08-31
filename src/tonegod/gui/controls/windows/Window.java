@@ -302,7 +302,7 @@ public class Window extends Element {
 	
 	public void addWindowContent(Element el) {
 		contentArea.addChild(el);
-		contentArea.addClippingLayer(contentArea);
+//		contentArea.addClippingLayer(contentArea); // Cause issue when used with Button
 	}
 	
 	public void removeWindowContent(Element el) {
@@ -310,7 +310,7 @@ public class Window extends Element {
 	}
 	
 	public void setContentLayout(Layout layout) {
-		contentArea.setLayout(layout);;
+		contentArea.setLayout(layout);
 	}
 	
 	public Element getContentArea() { return contentArea; }

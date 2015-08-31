@@ -120,4 +120,9 @@ public abstract class SelectBox extends ComboBox {
 		selectEnabled = isEnabled;
 		this.btnArrowDown.setIsEnabled(isEnabled);
 	}
+
+        @Override
+        public boolean getIsEnabled() {
+                return selectEnabled;
+        }    
 }

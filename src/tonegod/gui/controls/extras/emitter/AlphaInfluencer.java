@@ -29,7 +29,7 @@ public class AlphaInfluencer extends InfluencerBase {
 		if (isEnabled) {
 			tempV2a.set(startAlpha, startAlpha);
 			tempV2b.set(endAlpha, endAlpha);
-			tempV2a.interpolate(tempV2b, interpolation.apply(particle.blend));
+			tempV2a.interpolateLocal(tempV2b, interpolation.apply(particle.blend));
 			
 			particle.color.set(
 				particle.color.r,

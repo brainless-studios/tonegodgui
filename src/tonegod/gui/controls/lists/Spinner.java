@@ -326,10 +326,10 @@ public abstract class Spinner extends TextField {
 			selectedIndex = 0;
 		else if (selectedIndex > stepValues.size()-1)
 			selectedIndex = stepValues.size()-1;
-		
+		ChangeType change = selectedIndex > this.selectedIndex ? ChangeType.INC : ChangeType.DEC;
 		this.selectedIndex = selectedIndex;
 		displaySelectedStep();
-		onChange(selectedIndex, stepValues.get(selectedIndex));
+		onChange(selectedIndex, stepValues.get(selectedIndex), change);
 	}
 	
 	/**
@@ -356,7 +356,7 @@ public abstract class Spinner extends TextField {
 			}
 		}
 		displaySelectedStep();
-		onChange(selectedIndex, stepValues.get(selectedIndex));
+		onChange(selectedIndex, stepValues.get(selectedIndex), ChangeType.INC);
 	}
 	
 	private void decStep() {
@@ -369,7 +369,7 @@ public abstract class Spinner extends TextField {
 			}
 		}
 		displaySelectedStep();
-		onChange(selectedIndex, stepValues.get(selectedIndex));
+		onChange(selectedIndex, stepValues.get(selectedIndex), ChangeType.DEC);
 	}
 	
 	private void displaySelectedStep() {
@@ -392,5 +392,10 @@ public abstract class Spinner extends TextField {
 	 * @param selectedIndex int The new selectedIndex
 	 * @param value The value associated with the selected index
 	 */
-	public abstract void onChange(int selectedIndex, String value);	
+	public abstract void onChange(int selectedIndex, String value, ChangeType changeType);
+        
+        public enum ChangeType{
+            INC,
+            DEC;
+        }
 }
